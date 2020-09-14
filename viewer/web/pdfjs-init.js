@@ -1,5 +1,8 @@
 'use strict';
 
+// Set this to URL that points to custom build of annotate-client/build/boot.js
+var CUSTOM_BOOT_URL = '../../../annotate-client/build/boot.js';
+
 // Note: This file is not transpiled. For IE 11 compatibility, it must only
 // use ES5 language features.
 //
@@ -53,7 +56,14 @@ document.addEventListener('webviewerloaded', function(event) {
 
     // Load the Hypothesis client.
     var embedScript = document.createElement('script');
-    embedScript.src = 'https://hypothes.is/embed.js';
+    var url = new URL(window.location.href);
+    if (url.searchParams.get('annotate') === 'yes') {
+      // use default build to allow creating annotations
+      embedScript.src = 'https://hypothes.is/embed.js';
+    } else {
+      // use our custom boot.js to limit the UI
+      embedScript.src = CUSTOM_BOOT_URL;
+    }
     document.body.appendChild(embedScript);
   });
 });
