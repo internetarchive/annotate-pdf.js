@@ -1,7 +1,7 @@
 'use strict';
 
 // Set this to URL that points to custom build of annotate-client/build/boot.js
-var CUSTOM_BOOT_URL = '../../../annotate-client/build/boot.js';
+var CUSTOM_BOOT_URL = '../../boot.js';
 
 // Note: This file is not transpiled. For IE 11 compatibility, it must only
 // use ES5 language features.
